@@ -73,60 +73,87 @@ public class Cliente implements Runnable {
 
 		menssagem = leitura().split("@");
 		System.out.println(menssagem[0] + " " + Thread.currentThread().getId());
+		
 		String resposta;
 		String[] menssagemFormatada;
 		switch (menssagem[0]) {
+		
+		case "novatarefa":
+			System.out.println(menssagem[1]);
+			String[] tarefa = menssagem[1].split("-");
+			//criar aqui a inserceo da tarefa no banco a tarefa[0] eh o titulo da tarefa,  tarefa[1] eha  turma e tarefa[2] eh a descricao
+			enviaResposta("ok@POO/PPI/");//a resposta tem que ser um ok seguido da lista de cursos que tiver no banco, mande soh o nome do curso separado por /, colo aqui
+			break;
+			
+		case "novamateria":
+			System.out.println(menssagem[1]);
+			String[] materia = menssagem[1].split("-");
+			//criar aqui a inserceo da materia no banco a materia[0] eh o nome da turma e a materia[1] eh o nome do professor responsavel
+			enviaResposta("ok@POO/PPI/");//a resposta tem que ser um ok seguido da lista de cursos que tiver no banco, mande soh o nome do curso separado por /, colo aqui
+			break;
+			
+		case "novaturma":
+			System.out.println(menssagem[1]);
+			String[] turma = menssagem[1].split("-");
+			//criar aqui a inserceo da turma no banco a turma[0] eh o nome da turma e a turma[1] eh o nome do professor responsavel
+			
+			enviaResposta("ok@POO/PPI/");//a resposta tem que ser um ok seguido da lista de cursos que tiver no banco, mande soh o nome do curso separado por /, colo aqui
+			break;
 
 		case "novo-aluno":
-
+			System.out.println(menssagem[1]);
 			String[] alunoFormatado = menssagem[1].split("-");
 
 			Aluno aluno = new Aluno(alunoFormatado[0], alunoFormatado[1], alunoFormatado[2], alunoFormatado[3],
 					alunoFormatado[4]);
 			new AlunoDAO().add(aluno);
-
+			enviaResposta("ok");
 			break;
 		case "updateProfessor":
+			System.out.println(menssagem[1]);
 			String[] professorAtualizado = menssagem[1].split("-");
 
 			Professor professorAtua = new Professor(professorAtualizado[0], professorAtualizado[1], professorAtualizado[2], professorAtualizado[3],
 					professorAtualizado[4]);
 			new ProfessorDAO().update(professorAtua);
-			
+			enviaResposta("ok");
 			break;
 			
 	
 		case "updateAluno":
+			System.out.println(menssagem[1]);
 			String[] alunoAtualizado = menssagem[1].split("-");
 
 			Aluno alunoAtua = new Aluno(alunoAtualizado[0], alunoAtualizado[1], alunoAtualizado[2], alunoAtualizado[3],
 					alunoAtualizado[4]);
 			new AlunoDAO().update(alunoAtua);
-			
+			enviaResposta("ok");
 			break;
 			
 		case "apagarAluno":
+			System.out.println(menssagem[1]);
 			String alunoApagado = menssagem[1];
 			Aluno alunoBusca = new AlunoDAO().get(alunoApagado);
 			new AlunoDAO().delete(alunoBusca);
-			
+			enviaResposta("ok");
 			break;
 			
 		case "apagarProfessor":
+			System.out.println(menssagem[1]);
 			String professorApagado = menssagem[1];
 			Professor professorBusca = new ProfessorDAO().get(professorApagado);
 			new ProfessorDAO().delete(professorBusca);
-			
+			enviaResposta("ok");
 			break;
 			
 		case "novo-professor":
-
+			System.out.println(menssagem[1]);
 			String[] professorFormatado = menssagem[1].split("-");
 
 			Professor professor = new Professor(professorFormatado[0], professorFormatado[1], professorFormatado[2],
 					professorFormatado[3], professorFormatado[4]);
 			new ProfessorDAO().add(professor);
-
+			enviaResposta("ok");
 			break;
 		case "Cursos":
 
@@ -135,7 +162,7 @@ public class Cliente implements Runnable {
 
 			break;
 		case "Login-Professor":
-
+			System.out.println(menssagem[1]);
 			menssagemFormatada = menssagem[1].split("-");
 
 			if (menssagemFormatada[0].equals("rojie") && menssagemFormatada[1].equals("12345678")) {
@@ -148,7 +175,7 @@ public class Cliente implements Runnable {
 			break;
 
 		case "Login-Aluno":
-
+			System.out.println(menssagem[1]);
 			menssagemFormatada = menssagem[1].split("-");
 
 			if (menssagemFormatada[0].equals("rojie") && menssagemFormatada[1].equals("12345678")) {
